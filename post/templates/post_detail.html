@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<style>
+    div.comment-name {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #007BFF;
+    }
+
+    .comment p {
+        font-size: 1em;
+        color: #e7872e;
+    }
+
+    .post-body {
+        font-size: 1.0em;
+        font-weight: 400;
+        line-height: 1.9;
+        color: black;
+    }
+</style>
+
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h2>{{post.title}}</h2>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <p class="post-body">{{post.body}}</p>
+    </div>
+</div>
+
+{% if post.imgfile %}
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h2></h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-center">
+        <img src="{{ post.imgfile.url }}" width="700">
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+<hr>
+<div class="row mt-5">
+    <div class="col-12">
+        <h4>&#35; comment</h4>
+        <p></p>
+        {% for comment in comments%}
+        <div class="comment">
+            <div class="comment-name">{{comment.name}}</div>
+            <p>{{comment.body}}</p>
+        </div>
+        {% empty %}
+        <p>No comment yet.</p>
+        {% endfor %}
+    </div>
+</div>
+<hr>
+<div class="col-12 mt-2">
+    <a href="/post/detail/{{post.id}}/modify/"><button type="button" class="btn btn-primary">수정하기</button></a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h3>Add a Comment</h3>
+        <!-- {{comment_form.as_p}}  : models.py 데이터베이스(Comment)의 인스턴스 변수로 
+            forms.py를 거쳐서 name과 body필드를 p태그로 감싸서 출력-->
+        <form method="POST">
+            {% csrf_token %}
+            {{comment_form.as_p}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-12 mt-2">
+        <button type="button" class="btn btn-primary" onclick="location.href='/post/post_list'">돌아가기</button>
+    </div>
+
+</div>
+
+{% endblock %}

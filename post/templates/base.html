@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>My Blog</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{% url 'post_list' %}">My Blog</a>
+                <!-- Add more navigation items here -->
+                </nav>
+        <div class="container">
+                {% block contents %}
+                {% endblock %}
+        </div>
+</body>
+
+</html>
+
+<!-- nav : 웹사이트에서 탐색링크 그룹 정의
+class="navbar navbar-expand-lg navbar-light bg-light" : 디자인과 반응형 동작
+{% url 'post_list' %} :'My Blog'라는 텍스트에 'post_list'라는 이름의 URL로의 링크를 생성 -->

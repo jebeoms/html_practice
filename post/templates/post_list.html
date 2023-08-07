@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h1>Post List</h1>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-12">
+        {% for post in posts %}
+        <div class="card" style="color: black;">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>
+            <p class="title" style="background-color: rgb(236, 243, 243); font-weight: 400;">{{ post.body|truncatewords:30}}</p>
+            {% empty %}
+            <p>No posts yet.</p>
+            {% endfor %}
+            {% if post.imgfile %}
+            <!-- <div class="row">
+                <div class="col-12 text-center">
+                    <img src="{{ post.imgfile.url }}" width="50">
+                </div>
+            </div> -->
+            <!-- 이미지도 넣어보기 -->
+            {% endif %}
+            <a href="{% url 'post_new' %}" class="btn btn-primary mt-4">New Post</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
