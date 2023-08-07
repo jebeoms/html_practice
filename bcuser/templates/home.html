@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h1>MyBlog</h1>
+    </div>
+</div>
+<div class="row mt-5">
+    {% if request.session.user %}
+    <div class="col-12">
+        <!-- bootstrap version 3이하 반응형 버튼 코드 - class="btn btn-primary btn-block" -->
+        <button class="btn btn-primary w-100" onclick="location.href='/bcuser/logout/'">로그아웃</button>
+    </div>
+    {% else %}
+    <div class="col-6">
+        <button class="btn btn-primary w-100" onclick="location.href='/bcuser/login/'">로그인</button>
+    </div>
+    <div class="col-6">
+        <button class="btn btn-primary w-100" onclick="location.href='/bcuser/register/'">회원가입</button>
+    </div>
+    {% endif %}
+    <!-- bootstrap version 3이하   <div class="row mt-2"> -->
+    <div class="mt-2">
+        <div class="col-12">
+        <button class="btn btn-primary w-100" style="padding: 10px 530px;" onclick="location.href='/post/post_list/'">게시글</button>
+    </div>
+
+
+    </div>
+</div>
+{% endblock %}
